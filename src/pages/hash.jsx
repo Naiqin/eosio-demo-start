@@ -14,13 +14,21 @@ export default class Hash extends React.Component {
         let userInput = e.target.value
         var hash = sha256.create();
         hash.update(userInput);
+        this.setState({ outputHash: hash.hex() });
         console.log(hash.hex());
         
     }
     render() {
         return <div>
-            <input onChange={this.getHash}/>
-        </div>
+            <div>
+              请输入需要加密的字符串：
+              <input onChange={this.getHash} />
+            </div>
+            <div>
+              sha256结果：
+              <div>{this.state.outputHash}</div>
+            </div>
+          </div>;
     }
 
 }
